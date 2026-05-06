@@ -2,7 +2,6 @@ import { useState } from "react";
 import LandCoverChart from "./components/LandCoverChart";
 import LandCoverPie from "./components/LandCoverPie";
 import "./App.css";
-
 const DATA = {
   Asia: {
     India: ["Hyderabad", "Delhi", "Mumbai", "Bangalore"],
@@ -32,7 +31,6 @@ const DATA = {
 export default function App() {
 
   const [stage, setStage] = useState("title");
-
   const [continent, setContinent] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
