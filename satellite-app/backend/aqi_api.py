@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "8178e6e1123542b2781d2f2409491eff"
+API_KEY=your_actual_key
 
 def get_real_time_aqi(lat, lon):
     try:
