@@ -22,16 +22,9 @@ ee.Initialize(credentials)
 # =====================================================
 # NDVI + RGB IMAGE (SAME SENTINEL-2 IMAGE)
 # =====================================================
-
 def get_ndvi_and_rgb(geometry, start_date, end_date):
-    """
-    Uses ONE Sentinel-2 image (least cloud cover)
-    Computes NDVI from that image
-    Generates a PUBLIC RGB thumbnail from the SAME image
-    """
 
     try:
-        # 1️⃣ Load Sentinel-2 L2A collection
         collection = (
             ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
             .filterBounds(geometry)
@@ -40,10 +33,9 @@ def get_ndvi_and_rgb(geometry, start_date, end_date):
             .sort("CLOUDY_PIXEL_PERCENTAGE")
         )
 
-        # 2️⃣ Select ONE image
         image = ee.Image(collection.first())
 
-        # 3️⃣ Compute NDVI
+        # ================= NDVI =================
         ndvi = image.normalizedDifference(["B8", "B4"]).rename("NDVI")
 
         ndvi_value = ndvi.reduceRegion(
@@ -53,12 +45,27 @@ def get_ndvi_and_rgb(geometry, start_date, end_date):
             maxPixels=1e13
         ).get("NDVI").getInfo()
 
-        # 4️⃣ Generate PUBLIC RGB thumbnail (browser-safe)
+        # ================= WATER DETECTION =================
+        # NDWI (better for water)
+        ndwi = image.normalizedDifference(["B3", "B8"]).rename("NDWI")
+
+        water_mask = ndwi.gt(0)
+
+        water_area = water_mask.reduceRegion(
+            reducer=ee.Reducer.mean(),
+            geometry=geometry,
+            scale=10,
+            maxPixels=1e13
+        ).getInfo()
+
+        water_percent = int(water_area.get("NDWI", 0) * 100)
+
+        # ================= RGB =================
         thumbnail_params = {
             "bands": ["B4", "B3", "B2"],
             "min": 300,
             "max": 2200,
-            "gamma":1.4,
+            "gamma": 1.4,
             "dimensions": 350,
             "region": geometry,
             "format": "png"
@@ -68,6 +75,7 @@ def get_ndvi_and_rgb(geometry, start_date, end_date):
 
         return {
             "ndvi": ndvi_value,
+            "water": water_percent,   # 🔥 NEW
             "rgb_url": rgb_url
         }
 
@@ -75,5 +83,6 @@ def get_ndvi_and_rgb(geometry, start_date, end_date):
         print("Earth Engine Error:", e)
         return {
             "ndvi": None,
+            "water": 0,
             "rgb_url": None
         }

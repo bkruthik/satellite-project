@@ -132,7 +132,7 @@ def analyze(req: AnalysisRequest):
         vegetation = int(max(0, min(1, ndvi)) * 100)
 
         bare_land = int((0.15 - ndvi) * 100) if ndvi < 0.15 else 5
-        water = 20
+        water = gee_result.get("water", 0)
         urban = max(0, 100 - (vegetation + water + bare_land))
 
         ndvi_list.append(ndvi)
