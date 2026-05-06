@@ -16,7 +16,9 @@ def get_real_time_aqi(lat, lon):
             "aqi": aqi,
             "pm2_5": components["pm2_5"],
             "pm10": components["pm10"]
+            
         }
 
     except Exception as e:
         return {"error": str(e)}
+        
