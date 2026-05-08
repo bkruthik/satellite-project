@@ -4,16 +4,16 @@ An AI-powered environmental analysis system that combines satellite imagery from
 **Table of Contents**
 
 
-**Overview**
-Features
-System Architecture
-Machine Learning Workflow
-Tech Stack
-Project Structure
-Installation & Setup
-API Reference
-Evaluation Metrics
-Future Improvements
+**Overview**:
+   .Features
+   .System Architecture
+   .Machine Learning Workflow
+   .Tech Stack
+   .Project Structure
+   .Installation & Setup
+   .API Reference
+   .Evaluation Metrics
+   .Future Improvements
 
 
 **Overview**
