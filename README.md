@@ -1,124 +1,175 @@
-🌍 AI-Based Land Cover and Environmental Risk Analysis
-An AI-powered environmental analysis system that combines satellite imagery from Google Earth Engine (GEE) with Machine Learning to analyze environmental conditions of any user-selected location — providing real-time insights on vegetation, urbanization, water presence, air quality, and environmental risk.
+# 🌍 AI-Based Land Cover and Environmental Risk Analysis
 
-**Table of Contents**
+An AI-powered environmental analysis system that combines satellite imagery from Google Earth Engine (GEE) with Machine Learning to analyze environmental conditions of user-selected locations. The system provides insights into vegetation health, urbanization, water presence, air quality, and environmental risk levels.
 
+---
 
-**Overview**:
-   .Features
-   .System Architecture
-   .Machine Learning Workflow
-   .Tech Stack
-   .Project Structure
-   .Installation & Setup
-   .API Reference
-   .Evaluation Metrics
-   .Future Improvements
+## 📖 Table of Contents
 
+* Overview
+* Features
+* System Architecture
+* Machine Learning Workflow
+* Tech Stack
+* Project Structure
+* Installation & Setup
+* API Reference
+* Evaluation Metrics
+* Future Improvements
 
-**Overview**
-This system uses Sentinel-2 satellite data and NDVI (Normalized Difference Vegetation Index) analysis combined with a Random Forest ML model to deliver:
+---
 
-Real-time environmental analysis
-Land cover distribution (vegetation, urban, water, bare land)
-Environmental risk prediction with confidence scores
-Future risk estimation
-Air Quality Index (AQI) data
-Visual charts and satellite imagery
+## 🚀 Overview
 
+This system utilizes Sentinel-2 satellite imagery, NDVI (Normalized Difference Vegetation Index) analysis, and a Random Forest Machine Learning model to provide:
 
-**Features**
+* Real-time environmental analysis
+* Land cover distribution analysis
+* Environmental risk prediction with confidence scores
+* Future environmental risk estimation
+* Air Quality Index (AQI) monitoring
+* Interactive visualizations and charts
 
-** Satellite Data Analysis**
+---
 
-Fetches Sentinel-2 imagery via Google Earth Engine
-Computes NDVI values for vegetation health assessment
-Applies cloud filtering for improved data accuracy
+## ✨ Features
 
-**Multi-Point Environmental Analysis**
+### 🛰️ Satellite Data Analysis
 
+* Fetches Sentinel-2 imagery using Google Earth Engine (GEE)
+* Computes NDVI values for vegetation health assessment
+* Applies cloud filtering for improved accuracy
 
-Samples multiple nearby geographic points
-Reduces localized measurement errors
-Produces a balanced environmental representation
+### 📍 Multi-Point Environmental Analysis
 
-**Land Cover Analysis**
+* Samples multiple nearby geographic locations
+* Reduces localized measurement errors
+* Produces balanced environmental representations
+
+### 🌱 Land Cover Analysis
 
 Estimates percentage distribution of:
 
-Vegetation
-Urban area
-Water bodies
-Bare land
+* Vegetation
+* Urban Areas
+* Water Bodies
+* Bare Land
 
+### 🤖 Machine Learning Prediction
 
-**Machine Learning Prediction**
+* Uses a Random Forest Classifier
+* Predicts environmental risk levels:
 
-Random Forest Classifier predicts risk level: Low / Medium / High
-Outputs a confidence score for each prediction
+  * Low
+  * Medium
+  * High
+* Generates confidence scores for predictions
 
-**Dynamic Environmental Risk Detection**
-Identifies issues such as:
+### ⚠️ Environmental Risk Detection
 
-Urban Heat Island
-Vegetation Loss
-Water Scarcity
+Identifies environmental concerns such as:
 
-**Future Prediction**
-Estimates future environmental conditions based on:
+* Urban Heat Island Effect
+* Vegetation Loss
+* Water Scarcity
 
-Urban growth trends
-Vegetation reduction patterns
-Environmental trend extrapolation
+### 🔮 Future Prediction
 
-**Air Quality Analysis**
+Forecasts future environmental conditions based on:
 
-Fetches real-time data including:
+* Urban growth trends
+* Vegetation reduction patterns
+* Historical environmental trends
 
-AQI, PM2.5, PM10, and overall pollution levels
+### 🌫️ Air Quality Analysis
 
-**Data Visualization**
+Fetches real-time pollution data including:
 
-Displays results via:
+* AQI
+* PM2.5
+* PM10
+* Overall pollution levels
 
-Pie charts & bar charts
-Satellite imagery
-AQI indicators
-Risk metrics
+### 📊 Data Visualization
 
-**System Architecture**
+Displays results using:
+
+* Pie Charts
+* Bar Charts
+* Satellite Imagery
+* AQI Indicators
+* Environmental Risk Metrics
+
+---
+
+## 🏗️ System Architecture
+
+```text
 User Input
-   ↓
+    │
+    ▼
 Frontend (React UI)
-   ↓
+    │
+    ▼
 FastAPI Backend
-   ↓
+    │
+    ▼
 Google Earth Engine + AQI APIs
-   ↓
+    │
+    ▼
 NDVI & Land Cover Extraction
-   ↓
+    │
+    ▼
 Machine Learning Prediction
-   ↓
+    │
+    ▼
 Risk Analysis & Future Prediction
-   ↓
+    │
+    ▼
 Visualization & Results
+```
 
-Machine Learning Workflow
+---
 
-Environmental feature values are generated and preprocessed
-Features used: NDVI, Urban Area, Water, Bare Land
-Random Forest model is trained on environmental scenarios
-Model predicts environmental risk level
-Performance is evaluated using Accuracy, Precision, Recall, and F1-Score
+## 🧠 Machine Learning Workflow
 
+1. Environmental features are extracted and preprocessed.
+2. Features include:
 
-Cloud Filtering: Satellite images may contain clouds that distort NDVI values. Cloud filtering removes cloudy pixels before processing, ensuring only clear-sky observations are used.
+   * NDVI
+   * Urban Area Percentage
+   * Water Coverage
+   * Bare Land Coverage
+3. A Random Forest model is trained on environmental scenarios.
+4. The model predicts environmental risk levels.
+5. Performance is evaluated using:
 
+   * Accuracy
+   * Precision
+   * Recall
+   * F1 Score
 
-**Tech Stack**
-LayerTechnologiesFrontendReact.js, Tailwind CSS, Axios, Recharts / Chart.jsBackendFastAPI, PythonMachine LearningScikit-learn, Random Forest Classifier, NumPySatellite & GeospatialGoogle Earth Engine (GEE), Sentinel-2APIsWAQI API, AQI API, Geocoding API
+### Cloud Filtering
 
-Project Structure
+Satellite imagery often contains cloud-covered pixels that can distort NDVI calculations. Cloud filtering removes these pixels before analysis, ensuring more reliable environmental assessments.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer                 | Technologies                                       |
+| --------------------- | -------------------------------------------------- |
+| Frontend              | React.js, Tailwind CSS, Axios, Recharts / Chart.js |
+| Backend               | FastAPI, Python                                    |
+| Machine Learning      | Scikit-learn, Random Forest Classifier, NumPy      |
+| Geospatial Processing | Google Earth Engine (GEE), Sentinel-2              |
+| APIs                  | WAQI API, AQI API, Geocoding API                   |
+
+---
+
+## 📂 Project Structure
+
+```text
 satellite-app/
 │
 ├── backend/
@@ -137,62 +188,140 @@ satellite-app/
 │   └── package.json
 │
 └── README.md
+```
 
-**Installation & Setup**
+---
 
-1. Clone the Repository
-bashgit clone <your-repository-link>
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
 cd satellite-app
-2. Backend Setup
-bash# Install dependencies
+```
+
+### 2. Backend Setup
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-# Start the backend server
+Start the FastAPI server:
+
+```bash
 uvicorn main:app --reload
-Backend runs at: http://127.0.0.1:8000
-3. Frontend Setup
-bash# Install packages
+```
+
+Backend runs at:
+
+```text
+http://127.0.0.1:8000
+```
+
+### 3. Frontend Setup
+
+Install dependencies:
+
+```bash
 npm install
+```
 
-# Start the development server
+Start the development server:
+
+```bash
 npm run dev
-Frontend runs at: http://localhost:5173
+```
 
-**API Reference**
-Health Check
-httpGET /
-Analyze Environmental Data
-httpPOST /analyze
-Request Body:
-json{
+Frontend runs at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🔗 API Reference
+
+### Health Check
+
+```http
+GET /
+```
+
+### Analyze Environmental Data
+
+```http
+POST /analyze
+```
+
+### Request Body
+
+```json
+{
   "continent": "Asia",
   "country": "India",
   "city": "Hyderabad",
   "start_date": "2026-03-01",
   "end_date": "2026-03-25"
 }
-Response Includes:
-FieldDescriptionndviNDVI value for the selected regionrisk_levelPredicted environmental risk levelml_predictionML model outputconfidence_scorePrediction confidence percentageland_coverVegetation / Urban / Water / Bare land distributionaqi_infoAir Quality Index and pollutant datadetected_risksList of identified environmental riskssuggestionsRecommended actionsfuture_predictionEstimated future environmental conditionsevaluation_metricsModel accuracy, precision, recall, F1-scoresatellite_imageRendered satellite imagery
+```
 
-Evaluation Metrics
+### Response Includes
+
+| Field              | Description                                      |
+| ------------------ | ------------------------------------------------ |
+| ndvi               | NDVI value for the selected region               |
+| risk_level         | Predicted environmental risk level               |
+| ml_prediction      | Machine learning prediction                      |
+| confidence_score   | Prediction confidence percentage                 |
+| land_cover         | Vegetation, Urban, Water, Bare Land distribution |
+| aqi_info           | AQI and pollutant information                    |
+| detected_risks     | Identified environmental risks                   |
+| suggestions        | Recommended actions                              |
+| future_prediction  | Estimated future environmental conditions        |
+| evaluation_metrics | Accuracy, Precision, Recall, F1 Score            |
+| satellite_image    | Processed satellite imagery                      |
+
+---
+
+## 📈 Evaluation Metrics
+
 Model performance is evaluated using:
-MetricDescriptionAccuracyOverall correct predictionsPrecisionCorrectness of positive predictionsRecallCoverage of actual positive casesF1 ScoreHarmonic mean of precision and recall
 
-**Future Improvements**
+| Metric    | Description                           |
+| --------- | ------------------------------------- |
+| Accuracy  | Overall prediction correctness        |
+| Precision | Correctness of positive predictions   |
+| Recall    | Coverage of actual positive cases     |
+| F1 Score  | Harmonic mean of Precision and Recall |
 
-Integration with real-world environmental datasets
-Advanced deep learning models for higher accuracy
-Time-series prediction and trend analysis
-Live environmental monitoring dashboard
-Larger-scale geographic analysis support
-Mobile application support
+---
 
+## 🔮 Future Improvements
 
-Built With
+* Integration with larger environmental datasets
+* Advanced Deep Learning models for improved accuracy
+* Time-series forecasting and trend analysis
+* Live environmental monitoring dashboard
+* Large-scale geographic analysis support
+* Mobile application development
 
-Python
-FastAPI
-React.js
-Google Earth Engine
-Scikit-learn
-Sentinel-2 Satellite Data
+---
+
+## 🚀 Built With
+
+* Python
+* FastAPI
+* React.js
+* Google Earth Engine
+* Scikit-learn
+* Sentinel-2 Satellite Data
+
+---
+
+## 👨‍💻 Author
+
+Developed as a learning project to explore Geospatial Analysis, Machine Learning, Environmental Monitoring, and Full-Stack Development using React, FastAPI, and Google Earth Engine.
